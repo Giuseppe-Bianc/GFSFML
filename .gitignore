@@ -361,3 +361,19 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/bin
+/bin-int
+/external/SFML/doc
+/external/spdlog/.github/workflows
+/external/spdlog/cmake
+/external/spdlog/scripts
+/external/spdlog/.clang-format
+/external/spdlog/.clang-tidy
+/external/spdlog/.gitattributes
+/external/spdlog/.gitignore
+/external/spdlog/appveyor.yml
+/external/spdlog/CMakeLists.txt
+/external/spdlog/INSTALL
+/external/spdlog/LICENSE
+/external/spdlog/README.md
+
