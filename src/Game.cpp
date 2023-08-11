@@ -45,6 +45,20 @@ void Game::run() {
 }
 
 void Game::initWindow() {
-    this->window = std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 600), "SFML RPG!",
+    std::string title = "None";
+    sf::VideoMode window_bounds(800, 600);
+    unsigned int frame_limit = 120;
+    bool vertical_sync_enable = false;
+
+    if(std::ifstream ifs("Config/window.ini"); ifs.is_open()) {
+        std::getline(ifs, title);
+        ifs >> window_bounds.width >> window_bounds.height;
+        ifs >> frame_limit;
+        ifs >> std::boolalpha >> vertical_sync_enable;
+    }
+
+    this->window = std::make_unique<sf::RenderWindow>(window_bounds, title,
                                                       sf::Style::Close | sf::Style::Titlebar | sf::Style::Resize);
+    this->window->setFramerateLimit(frame_limit);
+    this->window->setVerticalSyncEnabled(vertical_sync_enable);
 }
