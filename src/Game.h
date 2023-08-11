@@ -1,5 +1,5 @@
 #pragma once
-#include "State.h"
+#include "States/GameState.h"
 
 class Game {
 public:
@@ -15,11 +15,13 @@ public:
 
 private:
     // variabili
-    std::unique_ptr<sf::RenderWindow> window;
+    std::shared_ptr<sf::RenderWindow> window;
     sf::Event sfEvent;
     sf::Clock dtClock;
     float dt;
+    std::stack<std::unique_ptr<State>> states;
 
     // inizializzazione
     void initWindow();
+    void initStates();
 };

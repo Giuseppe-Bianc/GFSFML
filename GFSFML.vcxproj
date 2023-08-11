@@ -153,16 +153,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\States\GameState.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\States\State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\States\GameState.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\casts.h" />
     <ClInclude Include="src\headers.h" />
     <ClInclude Include="src\Timer.h" />
-    <ClInclude Include="src\State.h" />
+    <ClInclude Include="src\States\State.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

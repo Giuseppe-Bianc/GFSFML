@@ -41,6 +41,7 @@
 #include <iostream>
 #include <iterator>
 #include <limits>
+#include <map>
 #include <memory>
 #include <numbers>
 #include <omp.h>
@@ -53,6 +54,7 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 #include <sstream>
+#include <stack>
 #include <stdexcept>
 #include <string_view>
 #include <unordered_set>

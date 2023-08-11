@@ -1,13 +1,17 @@
 #include "Game.h"
 
-Game::Game() { this->initWindow(); }
-
-Game::~Game() {}
-
-void Game::updateDt() {
-    this->dt = this->dtClock.restart().asSeconds();
-    LINFO("dt {}", this->dt);
+Game::Game() {
+    this->initWindow();
+    this->initStates();
 }
+
+Game::~Game() {
+    while(!this->states.empty()) {
+        this->states.pop();
+    }
+}
+
+void Game::updateDt() { this->dt = this->dtClock.restart().asSeconds(); }
 
 void Game::updateSFMLEvents() {
     while(this->window->pollEvent(this->sfEvent)) {
@@ -27,11 +31,19 @@ void Game::updateSFMLEvents() {
     this->window->display();
 }
 
-void Game::update() { this->updateSFMLEvents(); }
+void Game::update() {
+    this->updateSFMLEvents();
+    if(!this->states.empty()) {
+        this->states.top()->update(this->dt);
+    }
+}
 
 void Game::render() {
     this->window->clear();
     // render
+    if(!this->states.empty()) {
+        this->states.top()->render(this->window);
+    }
     this->window->display();
 }
 
@@ -57,8 +69,10 @@ void Game::initWindow() {
         ifs >> std::boolalpha >> vertical_sync_enable;
     }
 
-    this->window = std::make_unique<sf::RenderWindow>(window_bounds, title,
+    this->window = std::make_shared<sf::RenderWindow>(window_bounds, title,
                                                       sf::Style::Close | sf::Style::Titlebar | sf::Style::Resize);
     this->window->setFramerateLimit(frame_limit);
     this->window->setVerticalSyncEnabled(vertical_sync_enable);
 }
+
+void Game::initStates() { this->states.push(std::make_unique<GameState>(this->window)); }
