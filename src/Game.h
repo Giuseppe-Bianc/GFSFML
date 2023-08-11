@@ -1,11 +1,6 @@
 #pragma once
-#include "Timer.h"
-#include "headers.h"
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
+#include "State.h"
+
 class Game {
 public:
     Game();
