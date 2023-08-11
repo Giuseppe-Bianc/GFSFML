@@ -7,10 +7,14 @@ public:
     virtual ~Game();
 
     // functions
+    void endApplication();
+
     void updateDt();
     void updateSFMLEvents();
     void update();
+
     void render();
+
     void run();
 
 private:

@@ -11,6 +11,8 @@ Game::~Game() {
     }
 }
 
+void Game::endApplication() { LINFO("closing the application"); }
+
 void Game::updateDt() { this->dt = this->dtClock.restart().asSeconds(); }
 
 void Game::updateSFMLEvents() {
@@ -35,6 +37,13 @@ void Game::update() {
     this->updateSFMLEvents();
     if(!this->states.empty()) {
         this->states.top()->update(this->dt);
+        if(this->states.top()->getQuit()) {
+            this->states.top()->endState();
+            this->states.pop();
+        }
+    } else {
+        this->endApplication();
+        this->window->close();
     }
 }
 

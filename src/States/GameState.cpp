@@ -4,8 +4,15 @@ GameState::GameState(std::shared_ptr<sf::RenderWindow> window) : State(window) {
 
 GameState::~GameState() {}
 
-void GameState::endState() {}
+void GameState::endState() { LINFO("ending GameState"); }
 
-void GameState::update(const float &dt) {}
+void GameState::updateKeyBinds(const float &dt) { this->checkForQuit(); }
+
+void GameState::update(const float &dt) {
+    this->updateKeyBinds(dt);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        LINFO("A");
+    }
+}
 
 void GameState::render(std::shared_ptr<sf::RenderTarget> target) {}
